@@ -47,3 +47,15 @@ td {
   margin-left: 10px;
   margin-right: 20px;
 }
+.TitreTableau, .tableau {
+  border: 2px solid skyblue;
+}
+.divNouvelleTache{
+  position: relative;
+  top :0px;
+  left: 500px;
+  height: 200px;
+  width: 200px;
+  background-color: black;
+
+}

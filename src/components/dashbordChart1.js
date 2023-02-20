@@ -12,7 +12,7 @@ export const contextDashBord = createContext("");
 
     const DashBord = () => {
         const[labelJour, setLabelJour] = useState(["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]);
-        const[nouveauData, setNouveauData] = useState(["0","0","0","0","0","0"])
+        
         const[data, setData] = useState({
           labels: labelJour,
           datasets: [
@@ -24,26 +24,27 @@ export const contextDashBord = createContext("");
             },
           ],
         });
-        const valeurdata = data.datasets[0].data;
-        const valeurJour = document.querySelector("#jour");
-        const valeurDataInput = document.querySelector("#valeur");
+        const valeurdata = data.datasets[0].data.slice();
+        let valeurJour ;
+        console.log(valeurJour);
+        let valeurDataInput ;
        
         function recupeValeur(){
+          valeurJour = document.querySelector("#jour");
+          valeurDataInput = document.querySelector("#valeur");
            let recupvaleurJour = valeurJour.value;
            let recupData = valeurDataInput.value
            let indexjour = labelJour.indexOf(recupvaleurJour);
-           nouveauData.splice(indexjour,1,recupData);
-          setData(nouveauData => {return [...nouveauData,valeurdata]});
-          console.log(valeurdata);
+           valeurdata[indexjour]= recupData;
+           console.log(valeurdata);
+           setData({...data,datasets:[{...data.datasets[0],data:valeurdata}]});
+           
+       
+          
           console.log(recupData);
           console.log(indexjour);
         }
-
-
-
         
-
-
         return (
           <>
           <h2>Changement des Valeurs</h2>
